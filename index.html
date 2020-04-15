@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Keyboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <link href="css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
+            box-sizing: border-box;
+            transition: 1.5s;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)),
+                url("https://picsum.photos/1920/1080/?random=1") no-repeat fixed left top/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .keyboard {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 1) 100%);
+            box-shadow:
+                inset 0 0 5px 1px rgba(55, 55, 55, 0.5),
+                0 5px 8px 3px rgba(33, 33, 33, 1),
+                0 2px 10px 10px rgba(0, 0, 0, 1),
+                0 2px 0 15px rgba(0, 0, 0, 1),
+                2px 10px 10px 15px rgba(0, 0, 0, 1);
+
+            width: 75%;
+            height: 60%;
+            border: 1px solid #000;
+            border-radius: 0.5rem;
+            padding: 1rem;
+
+            display: flex;
+            flex-direction: column;
+
+            position: relative;
+            z-index: 0;
+        }
+
+        .col {
+            display: flex;
+            flex: 1 1 auto;
+            height: 20%;
+        }
+
+        .col~.col {
+            margin-top: 1rem;
+        }
+
+        .btn {
+            border-radius: 0.5rem;
+            background: #000;
+            color: white;
+            padding: 0.2rem;
+            margin: 0 0.5rem;
+            width: 10%;
+            /* height: 100%; */
+            display: flex;
+        }
+
+        /* 第一列 ------------------------------------------------------------------------------------------------*/
+        .col:nth-child(1) {
+            height: 12%;
+        }
+
+        /* esc 的垂直置中 */
+        .col:nth-child(1) .btn div {
+            height: 100%;
+        }
+
+        /* 第一列所有按鈕的內容位置 */
+        .col:nth-child(1) .btn {
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .col:nth-child(1) .btn::before {
+            font-size: 0.5rem;
+            font-weight: bold;
+            position: absolute;
+            right: 0.3rem;
+            bottom: 0.1rem;
+        }
+
+        .col:nth-child(1) .btn:nth-child(2)::before {
+            content: 'F1';
+        }
+
+        .col:nth-child(1) .btn:nth-child(3)::before {
+            content: 'F2';
+        }
+
+        .col:nth-child(1) .btn:nth-child(4)::before {
+            content: 'F3';
+        }
+
+        .col:nth-child(1) .btn:nth-child(5)::before {
+            content: 'F4';
+        }
+
+        .col:nth-child(1) .btn:nth-child(6)::before {
+            content: 'F5';
+        }
+
+        .col:nth-child(1) .btn:nth-child(7)::before {
+            content: 'F6';
+        }
+
+        .col:nth-child(1) .btn:nth-child(8)::before {
+            content: 'F7';
+        }
+
+        .col:nth-child(1) .btn:nth-child(9)::before {
+            content: 'F8';
+        }
+
+        .col:nth-child(1) .btn:nth-child(10)::before {
+            content: 'F9';
+        }
+
+        .col:nth-child(1) .btn:nth-child(11)::before {
+            content: 'F10';
+        }
+
+        .col:nth-child(1) .btn:nth-child(12)::before {
+            content: 'F11';
+        }
+
+        .col:nth-child(1) .btn:nth-child(13)::before {
+            content: 'F12';
+        }
+
+        /* 第二列 ------------------------------------------------------------------------------------------------*/
+        /* 第 1、13 顆按鈕 */
+        .col:nth-child(2) .btn:nth-child(1),
+        .col:nth-child(2) .btn:nth-child(13) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .col:nth-child(2) .btn:nth-child(1) div,
+        .col:nth-child(2) .btn:nth-child(13) div {
+            height: 1rem;
+            line-height: 1rem;
+        }
+
+        /* 第 14 顆按鈕 delete*/
+        .col:nth-child(2) .btn:nth-child(14) {
+            width: 17%;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .col:nth-child(2) .btn:nth-child(14) div {
+            margin-right: 0.2rem;
+            font-size: 0.8rem;
+        }
+
+        /* 第 2 ~ 12 顆按鈕 */
+        .col:nth-child(2) .btn:nth-child(2),
+        .col:nth-child(2) .btn:nth-child(3),
+        .col:nth-child(2) .btn:nth-child(4),
+        .col:nth-child(2) .btn:nth-child(5),
+        .col:nth-child(2) .btn:nth-child(6),
+        .col:nth-child(2) .btn:nth-child(7),
+        .col:nth-child(2) .btn:nth-child(8),
+        .col:nth-child(2) .btn:nth-child(9),
+        .col:nth-child(2) .btn:nth-child(10),
+        .col:nth-child(2) .btn:nth-child(11),
+        .col:nth-child(2) .btn:nth-child(12) {
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .col:nth-child(2) .btn:nth-child(2) div,
+        .col:nth-child(2) .btn:nth-child(3) div,
+        .col:nth-child(2) .btn:nth-child(4) div,
+        .col:nth-child(2) .btn:nth-child(5) div,
+        .col:nth-child(2) .btn:nth-child(6) div,
+        .col:nth-child(2) .btn:nth-child(7) div,
+        .col:nth-child(2) .btn:nth-child(8) div,
+        .col:nth-child(2) .btn:nth-child(9) div,
+        .col:nth-child(2) .btn:nth-child(10) div,
+        .col:nth-child(2) .btn:nth-child(11) div,
+        .col:nth-child(2) .btn:nth-child(12) div {
+            width: 50%;
+        }
+
+        /* 第三列 ------------------------------------------------------------------------------------------------*/
+        /* 第 1 顆按鈕 tab */
+        .col:nth-child(3) .btn:nth-child(1) {
+            width: 17%;
+            align-items: flex-end;
+        }
+
+        .col:nth-child(3) .btn:nth-child(1) div {
+            margin-left: 0.2rem;
+        }
+
+        /* 第 2 ~ 11 顆按鈕 */
+        .col:nth-child(3) .btn:nth-child(2),
+        .col:nth-child(3) .btn:nth-child(3),
+        .col:nth-child(3) .btn:nth-child(4),
+        .col:nth-child(3) .btn:nth-child(5),
+        .col:nth-child(3) .btn:nth-child(6),
+        .col:nth-child(3) .btn:nth-child(7),
+        .col:nth-child(3) .btn:nth-child(8),
+        .col:nth-child(3) .btn:nth-child(9),
+        .col:nth-child(3) .btn:nth-child(10),
+        .col:nth-child(3) .btn:nth-child(11) {
+            justify-content: flex-end;
+            flex-wrap: wrap-reverse;
+            text-align: center;
+        }
+
+        .col:nth-child(3) .btn:nth-child(2) div,
+        .col:nth-child(3) .btn:nth-child(3) div,
+        .col:nth-child(3) .btn:nth-child(4) div,
+        .col:nth-child(3) .btn:nth-child(5) div,
+        .col:nth-child(3) .btn:nth-child(6) div,
+        .col:nth-child(3) .btn:nth-child(7) div,
+        .col:nth-child(3) .btn:nth-child(8) div,
+        .col:nth-child(3) .btn:nth-child(9) div,
+        .col:nth-child(3) .btn:nth-child(10) div,
+        .col:nth-child(3) .btn:nth-child(11) div {
+            width: 50%;
+        }
+
+        /* 第 12 ~ 14 顆按鈕*/
+        .col:nth-child(3) .btn:nth-child(12),
+        .col:nth-child(3) .btn:nth-child(13),
+        .col:nth-child(3) .btn:nth-child(14) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .col:nth-child(3) .btn:nth-child(12) div,
+        .col:nth-child(3) .btn:nth-child(13) div,
+        .col:nth-child(3) .btn:nth-child(14) div {
+            font-size: 0.8rem;
+            font-weight: bolder;
+            height: 100%;
+        }
+
+        /* 第四列 ------------------------------------------------------------------------------------------------*/
+        /* 第 1 顆按鈕 ○、caps lock */
+        .col:nth-child(4) .btn:nth-child(1) {
+            width: 21%;
+            flex-direction: column;
+        }
+
+        .col:nth-child(4) .btn:nth-child(1) div {
+            height: 100%;
+            margin-left: 0.2rem;
+        }
+
+        .col:nth-child(4) .btn:nth-child(1) div:nth-child(1) {
+            font-size: 0.8rem;
+        }
+
+        /* 第 11 顆按鈕 */
+        .col:nth-child(4) .btn:nth-child(11) {
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+        .col:nth-child(4) .btn:nth-child(11) div {
+            width: 50%;
+        }
+
+        /* 第 12 顆按鈕 */
+        .col:nth-child(4) .btn:nth-child(12) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .col:nth-child(4) .btn:nth-child(12) div {
+            height: 1rem;
+            line-height: 1rem;
+        }
+
+        /* 第 13 顆按鈕 enter、return */
+        .col:nth-child(4) .btn:nth-child(13) {
+            width: 21%;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .col:nth-child(4) .btn:nth-child(13) div {
+            height: 100%;
+            margin-right: 0.2rem;
+        }
+
+
+        /* 第 2 ~ 10 顆按鈕 */
+        .col:nth-child(4) .btn:nth-child(2),
+        .col:nth-child(4) .btn:nth-child(3),
+        .col:nth-child(4) .btn:nth-child(4),
+        .col:nth-child(4) .btn:nth-child(5),
+        .col:nth-child(4) .btn:nth-child(6),
+        .col:nth-child(4) .btn:nth-child(7),
+        .col:nth-child(4) .btn:nth-child(8),
+        .col:nth-child(4) .btn:nth-child(9),
+        .col:nth-child(4) .btn:nth-child(10) {
+            justify-content: flex-end;
+            flex-wrap: wrap-reverse;
+            text-align: center;
+        }
+
+        .col:nth-child(4) .btn:nth-child(2) div,
+        .col:nth-child(4) .btn:nth-child(3) div,
+        .col:nth-child(4) .btn:nth-child(4) div,
+        .col:nth-child(4) .btn:nth-child(5) div,
+        .col:nth-child(4) .btn:nth-child(6) div,
+        .col:nth-child(4) .btn:nth-child(7) div,
+        .col:nth-child(4) .btn:nth-child(8) div,
+        .col:nth-child(4) .btn:nth-child(9) div,
+        .col:nth-child(4) .btn:nth-child(10) div {
+            width: 50%;
+        }
+
+        /* 第五列 ------------------------------------------------------------------------------------------------*/
+        /* 第 1 顆按鈕 shift */
+        .col:nth-child(5) .btn:nth-child(1) {
+            width: 30%;
+            align-items: flex-end;
+        }
+
+        .col:nth-child(5) .btn:nth-child(1) div {
+            margin-left: 0.2rem;
+        }
+
+        /* 第 2 顆按鈕 */
+        .col:nth-child(5) .btn:nth-child(2) {
+            flex-wrap: wrap;
+        }
+
+        .col:nth-child(5) .btn:nth-child(2) div {
+            width: 100%;
+        }
+
+        .col:nth-child(5) .btn:nth-child(2) div:nth-child(1) {
+            text-align: right;
+            margin-right: 0.2rem;
+        }
+
+        /* 第 12 顆按鈕 shift */
+        .col:nth-child(5) .btn:nth-child(12) {
+            width: 30%;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .col:nth-child(5) .btn:nth-child(12) div {
+            margin-right: 0.2rem;
+        }
+
+        /* 第 3 ~ 8 顆按鈕 */
+        .col:nth-child(5) .btn:nth-child(3),
+        .col:nth-child(5) .btn:nth-child(4),
+        .col:nth-child(5) .btn:nth-child(5),
+        .col:nth-child(5) .btn:nth-child(6),
+        .col:nth-child(5) .btn:nth-child(7),
+        .col:nth-child(5) .btn:nth-child(8) {
+            justify-content: flex-end;
+            flex-wrap: wrap-reverse;
+            text-align: center;
+        }
+
+        .col:nth-child(5) .btn:nth-child(3) div,
+        .col:nth-child(5) .btn:nth-child(4) div,
+        .col:nth-child(5) .btn:nth-child(5) div,
+        .col:nth-child(5) .btn:nth-child(6) div,
+        .col:nth-child(5) .btn:nth-child(7) div,
+        .col:nth-child(5) .btn:nth-child(8) div {
+            width: 50%;
+        }
+
+        /* 第 9 ~ 11 顆按鈕 */
+        .col:nth-child(5) .btn:nth-child(9),
+        .col:nth-child(5) .btn:nth-child(10),
+        .col:nth-child(5) .btn:nth-child(11) {
+            flex-wrap: wrap;
+            text-align: center;
+        }
+
+
+        .col:nth-child(5) .btn:nth-child(9) div,
+        .col:nth-child(5) .btn:nth-child(10) div,
+        .col:nth-child(5) .btn:nth-child(11) div {
+            width: 50%;
+        }
+
+        /* 第六列 ------------------------------------------------------------------------------------------------*/
+        /* 第 1 顆按鈕 */
+        .col:nth-child(6) .btn:nth-child(1),
+        .col:nth-child(6) .btn:nth-child(2) {
+            align-items: flex-end;
+        }
+
+        .col:nth-child(6) .btn:nth-child(1) div,
+        .col:nth-child(6) .btn:nth-child(2) div {
+            margin-left: 0.2rem;
+        }
+
+        /* 第 5 顆按鈕 空白鍵*/
+        .col:nth-child(6) .btn:nth-child(5) {
+            width: 50%;
+        }
+
+        /* 第 3、6 顆按鈕 */
+        .col:nth-child(6) .btn:nth-child(3),
+        .col:nth-child(6) .btn:nth-child(6) {
+            flex-direction: column;
+        }
+
+        .col:nth-child(6) .btn:nth-child(3) div,
+        .col:nth-child(6) .btn:nth-child(6) div {
+            height: 100%;
+            margin-left: 0.2rem;
+        }
+
+        /* 第 4、7 顆按鈕 */
+        .col:nth-child(6) .btn:nth-child(4),
+        .col:nth-child(6) .btn:nth-child(7) {
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .col:nth-child(6) .btn:nth-child(4) div,
+        .col:nth-child(6) .btn:nth-child(7) div {
+            height: 100%;
+            margin-right: 0.2rem;
+        }
+
+        /* 第 8 顆 包著上下左右*/
+        .col:nth-child(6) .btn:nth-child(8) {
+            width: 35%;
+            padding: 0;
+            background-color: transparent;
+            text-align: center;
+            justify-content: space-around;
+            position: relative;
+        }
+
+        .col:nth-child(6) .btn:nth-child(8) .direction {
+            background: #000;
+            border-radius: 0.5rem;
+            width: 100%;
+            height: 45%;
+        }
+
+        .col:nth-child(6) .btn:nth-child(8) .direction:nth-child(1) {
+            position: absolute;
+            width: 30%;
+        }
+
+        .col:nth-child(6) .btn:nth-child(8) .direction:nth-child(2),
+        .col:nth-child(6) .btn:nth-child(8) .direction:nth-child(3),
+        .col:nth-child(6) .btn:nth-child(8) .direction:nth-child(4) {
+            width: 30%;
+            align-self: flex-end;
+        }
+
+        /* 變化樣式 */
+        .col .btn,
+        .col .direction {
+            position: relative;
+        }
+
+        .col .btn::after,
+        .col:nth-child(6) .btn:nth-child(8) .direction::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: calc(100% + 3px);
+            height: calc(100% + 3px);
+            transform: translate(-1px, -1px);
+            border-radius: 0.5rem;
+            background: Red;
+            z-index: -1;
+        }
+
+        .col .btn,
+        .col:nth-child(6) .btn:nth-child(8) .direction {
+            box-shadow: inset 0 -2px 0 3px rgba(33, 33, 33, 0.5);
+        }
+
+        .col:nth-child(6) .btn:nth-child(8) {
+            box-shadow: none;
+        }
+
+        .col:nth-child(6) .btn:nth-child(8)::after {
+            background: transparent;
+            border: none;
+        }
+
+        .btn::after,
+        .col:nth-child(6) .btn:nth-child(8) .direction::after {
+            animation: light 20s infinite;
+        }
+
+        .col:nth-child(6) .btn:nth-child(8)::after {
+            animation: none;
+        }
+
+        .col:nth-child(6) .btn:nth-child(8):hover {
+            animation: none;
+            cursor: auto;
+        }
+
+        .btn:hover,
+        .col:nth-child(6) .btn:nth-child(8) .direction:hover {
+            animation: light2 1s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes light {
+            50% {
+                box-shadow: inset 0 0 10px 5px rgb(0, 255, 242);
+                /* filter: hue-rotate(360deg); */
+            }
+        }
+
+        @keyframes light2 {
+            0% {
+                box-shadow: inset 0 0 1px rgb(41, 41, 41);
+            }
+
+            50% {
+                box-shadow: inset 0 0 6px rgb(255, 255, 255);
+            }
+
+            100% {
+                box-shadow: inset 0 0 1px rgb(41, 41, 41);
+            }
+        }
+
+        /* RWD */
+        @media (max-width: 576px) {
+            body {
+                align-items: flex-start;
+            }
+
+            .keyboard {
+                width: 100%;
+                height: auto;
+                border: 1px solid #000;
+                border-radius: 0.5rem;
+                padding: 1rem;
+
+                display: flex;
+                flex-direction: column;
+            }
+
+            .col {
+                flex-wrap: wrap;
+                padding: 1rem;
+                border-radius: 1rem;
+            }
+
+
+            .col .btn {
+                flex: 1 0 auto;
+            }
+
+            .col:nth-child(odd) {
+                background: #777;
+            }
+
+            .col:nth-child(even) {
+                background: #aaa;
+            }
+
+            .col .btn {
+                margin: 1%;
+            }
+
+            /* 第六列 */
+            .col:nth-child(6) {
+                width: 100%;
+            }
+
+            .col:nth-child(6) .btn:nth-child(2),
+            .col:nth-child(6) .btn:nth-child(3),
+            .col:nth-child(6) .btn:nth-child(4),
+            .col:nth-child(6) .btn:nth-child(6),
+            .col:nth-child(6) .btn:nth-child(7) {
+                position: relative;
+            }
+
+            .col:nth-child(6) .btn:nth-child(2)::before,
+            .col:nth-child(6) .btn:nth-child(3)::before,
+            .col:nth-child(6) .btn:nth-child(4)::before,
+            .col:nth-child(6) .btn:nth-child(6)::before,
+            .col:nth-child(6) .btn:nth-child(7)::before {
+                position: absolute;
+                bottom: 0.2rem;
+                left: 0.2rem;
+            }
+
+            .col:nth-child(6) .btn:nth-child(2)::before {
+                content: 'ctrl';
+            }
+
+            .col:nth-child(6) .btn:nth-child(3)::before {
+                content: 'alt';
+            }
+
+            .col:nth-child(6) .btn:nth-child(4)::before {
+                content: '⌘';
+            }
+
+            .col:nth-child(6) .btn:nth-child(6)::before {
+                content: '⌘';
+            }
+
+            .col:nth-child(6) .btn:nth-child(7)::before {
+                content: 'alt';
+            }
+
+            .col:nth-child(6) .btn:nth-child(2) div,
+            .col:nth-child(6) .btn:nth-child(3) div,
+            .col:nth-child(6) .btn:nth-child(4) div,
+            .col:nth-child(6) .btn:nth-child(6) div,
+            .col:nth-child(6) .btn:nth-child(7) div {
+                /* text-indent: -1000px; */
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="keyboard">
+        <!-- 第一列 -->
+        <div class="col">
+            <div class="btn">
+                <div>esc</div>
+            </div>
+            <div class="btn">
+                <i class="fas fa-sun"></i>
+            </div>
+            <div class="btn"><i class="far fa-sun"></i></div>
+            <div class="btn"><i class="fas fa-video"></i></div>
+            <div class="btn"><i class="fas fa-grip-horizontal"></i></div>
+            <div class="btn"><i class="fas fa-wifi"></i></div>
+            <div class="btn"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="btn"><i class="fas fa-backward"></i></div>
+            <div class="btn"><i class="fas fa-pause"></i></div>
+            <div class="btn"><i class="fas fa-forward"></i></div>
+            <div class="btn"><i class="fas fa-volume-off"></i></div>
+            <div class="btn"><i class="fas fa-volume-down"></i></div>
+            <div class="btn"><i class="fas fa-volume-up"></i></div>
+            <div class="btn"><i class="fas fa-power-off" style="font-size:22px;"></i></div>
+        </div>
+        <!-- 第二列 -->
+        <div class="col">
+            <div class="btn">
+                <div>~</div>
+                <div>、</div>
+            </div>
+            <div class="btn">
+                <div>！</div>
+                <div>ㄅ</div>
+                <div>１</div>
+            </div>
+            <div class="btn">
+                <div>＠</div>
+                <div>ㄉ</div>
+                <div>２</div>
+            </div>
+            <div class="btn">
+                <div>＃</div>
+                <div>ˇ</div>
+                <div>１</div>
+            </div>
+            <div class="btn">
+                <div>＄</div>
+                <div>ˋ</div>
+                <div>４</div>
+            </div>
+            <div class="btn">
+                <div>％</div>
+                <div>ㄓ</div>
+                <div>５</div>
+            </div>
+            <div class="btn">
+                <div>^</div>
+                <div>ˊ</div>
+                <div>６</div>
+            </div>
+            <div class="btn">
+                <div>＆</div>
+                <div>˙</div>
+                <div>７</div>
+            </div>
+            <div class="btn">
+                <div>＊</div>
+                <div>ㄚ</div>
+                <div>８</div>
+            </div>
+            <div class="btn">
+                <div>(</div>
+                <div>ㄞ</div>
+                <div>９</div>
+            </div>
+            <div class="btn">
+                <div>)</div>
+                <div>ㄢ</div>
+                <div>０</div>
+            </div>
+            <div class="btn">
+                <div>－</div>
+                <div>ㄦ</div>
+                <div>-</div>
+            </div>
+            <div class="btn">
+                <div>+</div>
+                <div>=</div>
+            </div>
+            <div class="btn" style="width:17%">
+                <div>delete</div>
+            </div>
+        </div>
+        <!-- 第三列 -->
+        <div class="col">
+            <div class="btn">
+                <div>tab</div>
+            </div>
+            <div class="btn">
+                <div>ㄆ</div>
+                <div>Ｑ</div>
+                <div>手</div>
+            </div>
+            <div class="btn">
+                <div>ㄊ</div>
+                <div>Ｗ</div>
+                <div>田</div>
+            </div>
+            <div class="btn">
+                <div>ㄍ</div>
+                <div>Ｅ</div>
+                <div>水</div>
+            </div>
+            <div class="btn">
+                <div>ㄐ</div>
+                <div>Ｒ</div>
+                <div>口</div>
+            </div>
+            <div class="btn">
+                <div>ㄔ</div>
+                <div>Ｔ</div>
+                <div>廿</div>
+            </div>
+            <div class="btn">
+                <div>ㄗ</div>
+                <div>Ｙ</div>
+                <div>卜</div>
+            </div>
+            <div class="btn">
+                <div>ㄧ</div>
+                <div>Ｕ</div>
+                <div>山</div>
+            </div>
+            <div class="btn">
+                <div>ㄛ</div>
+                <div>Ｉ</div>
+                <div>戈</div>
+            </div>
+            <div class="btn">
+                <div>ㄟ</div>
+                <div>Ｏ</div>
+                <div>人</div>
+            </div>
+            <div class="btn">
+                <div>ㄣ</div>
+                <div>Ｐ</div>
+                <div>心</div>
+            </div>
+            <div class="btn">
+                <div>{</div>
+                <div>[</div>
+            </div>
+            <div class="btn">
+                <div>}</div>
+                <div>]</div>
+            </div>
+            <div class="btn">
+                <div>|</div>
+                <div>\</div>
+            </div>
+        </div>
+        <!-- 第四列 -->
+        <div class="col">
+            <div class="btn">
+                <div>○</div>
+                <div>caps lock</div>
+            </div>
+            <div class="btn">
+                <div>ㄇ</div>
+                <div>Ａ</div>
+                <div>日</div>
+            </div>
+            <div class="btn">
+                <div>ㄋ</div>
+                <div>Ｓ</div>
+                <div>尸</div>
+            </div>
+            <div class="btn">
+                <div>ㄎ</div>
+                <div>Ｄ</div>
+                <div>木</div>
+            </div>
+            <div class="btn">
+                <div>ㄑ</div>
+                <div>Ｆ</div>
+                <div>火</div>
+            </div>
+            <div class="btn">
+                <div>ㄕ</div>
+                <div>Ｇ</div>
+                <div>土</div>
+            </div>
+            <div class="btn">
+                <div>ㄘ</div>
+                <div>Ｈ</div>
+                <div>竹</div>
+            </div>
+            <div class="btn">
+                <div>ㄨ</div>
+                <div>Ｊ</div>
+                <div>十</div>
+            </div>
+            <div class="btn">
+                <div>ㄜ</div>
+                <div>Ｋ</div>
+                <div>大</div>
+            </div>
+            <div class="btn">
+                <div>ㄠ</div>
+                <div>Ｌ</div>
+                <div>中</div>
+            </div>
+            <div class="btn">
+                <div>：</div>
+                <div>ㄤ</div>
+                <div>；</div>
+            </div>
+            <div class="btn">
+                <div>"</div>
+                <div>、</div>
+            </div>
+            <div class="btn">
+                <div>enter</div>
+                <div>return</div>
+            </div>
+        </div>
+        <!-- 第五列 -->
+        <div class="col">
+            <div class="btn">
+                <div>shift</div>
+            </div>
+            <div class="btn">
+                <div>ㄈ</div>
+                <div>Ｚ</div>
+            </div>
+            <div class="btn">
+                <div>ㄌ</div>
+                <div>Ｘ</div>
+                <div>重</div>
+            </div>
+            <div class="btn">
+                <div>ㄏ</div>
+                <div>Ｃ</div>
+                <div>金</div>
+            </div>
+            <div class="btn">
+                <div>ㄒ</div>
+                <div>Ｖ</div>
+                <div>女</div>
+            </div>
+            <div class="btn">
+                <div>ㄖ</div>
+                <div>Ｂ</div>
+                <div>月</div>
+            </div>
+            <div class="btn">
+                <div>ㄙ</div>
+                <div>Ｎ</div>
+                <div>弓</div>
+            </div>
+            <div class="btn">
+                <div>ㄩ</div>
+                <div>Ｍ</div>
+                <div>ㄧ</div>
+            </div>
+            <div class="btn">
+                <div>&lt;</div>
+                <div>ㄝ</div>
+                <div>,</div>
+            </div>
+            <div class="btn">
+                <div>&gt;</div>
+                <div>ㄡ</div>
+                <div>.</div>
+            </div>
+            <div class="btn">
+                <div>？</div>
+                <div>ㄥ</div>
+                <div>/</div>
+            </div>
+            <div class="btn">
+                <div>shift</div>
+            </div>
+        </div>
+        <!-- 第六列 -->
+        <div class="col">
+            <div class="btn">
+                <div>fn</div>
+            </div>
+            <div class="btn">
+                <div>control</div>
+            </div>
+            <div class="btn">
+                <div>alt</div>
+                <div>option</div>
+            </div>
+            <div class="btn">
+                <div>⌘</div>
+                <div>command</div>
+            </div>
+            <div class="btn"></div>
+            <div class="btn">
+                <div>⌘</div>
+                <div>command</div>
+            </div>
+            <div class="btn">
+                <div>alt</div>
+                <div>option</div>
+            </div>
+            <div class="btn">
+                <div class="direction"><i class="fas fa-caret-up"></i></div>
+                <div class="direction"><i class="fas fa-caret-left"></i></div>
+                <div class="direction"><i class="fas fa-caret-down"></i></div>
+                <div class="direction"><i class="fas fa-caret-right"></i></div>
+            </div>
+        </div>
+    </div>
+    <script src='jquery-3.4.1.js'></script>
+    <script>
+
+
+    </script>
+</body>
+
+</html>
